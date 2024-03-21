@@ -8,7 +8,6 @@ node {
 
   environment {
     colordust = credentials('colordust')
-    abc = "xyz"
 
   }
 
