@@ -8,7 +8,7 @@ node {
 
   environment {
     colordust = credentials('colordust')
-    jenkinsRoot = "${jenkinsRoot}"
+    abc = "xyz"
 
   }
 
