@@ -2,7 +2,6 @@
 
 node {
   @Library('pipeline-library') _
-  def javaHome = env.JAVA_HOME
   def jenkinsRoot = "${JENKINS_HOME}/workspace"
   def appVer = ''
   def lastCommitMessage = ''
@@ -27,14 +26,15 @@ node {
       (appVer, lastCommitMessage) = checkoutscm();
     }
 
-    stage('Build') {
-      sh "mvn clean package install -T 1C"
-    }
+//    stage('Build') {
+//      sh "mvn clean package install -T 1C"
+//    }
 
     stage('SonarQube') {
-      withSonarQubeEnv() {
-        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=saravanjs-project -Dsonar.projectName='saravanjs-project'"
-      }
+//      withSonarQubeEnv() {
+//        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=saravanjs-project -Dsonar.projectName='saravanjs-project'"
+//      }
+      sonarqube()
     }
 
     stage('Package') {
