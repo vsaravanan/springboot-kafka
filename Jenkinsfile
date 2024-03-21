@@ -29,7 +29,7 @@ node {
 
     stage('Build') {
 //      sh "mvn clean package install -T 1C"
-//      mvnbuild()
+      mvnbuild()
     }
 
     stage('SonarQube') {
