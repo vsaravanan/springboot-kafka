@@ -2,7 +2,6 @@
 
 node {
   @Library('pipeline-library') _
-
   def javaHome = env.JAVA_HOME
   def jenkinsRoot = "${JENKINS_HOME}/workspace"
   def appVer = ''
