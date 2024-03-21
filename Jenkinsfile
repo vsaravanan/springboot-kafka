@@ -28,14 +28,14 @@ node {
 
     stage('Build') {
 //      sh "mvn clean package install -T 1C"
-      mvnbuild()
+//      mvnbuild()
     }
 
     stage('SonarQube') {
 //      withSonarQubeEnv() {
 //        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=saravanjs-project -Dsonar.projectName='saravanjs-project'"
 //      }
-      sonarqube()
+//      sonarqube()
     }
 
     stage('Package') {
