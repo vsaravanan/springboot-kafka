@@ -1,0 +1,14 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.saravan</groupId>
+    <artifactId>springboot-kafka</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>springboot-kafka-real-world-project</module>
+        <module>springboot-kafka-tutorial</module>
+    </modules>
+
+
+</project>
