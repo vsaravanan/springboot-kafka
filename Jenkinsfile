@@ -26,9 +26,10 @@ node {
       (appVer, lastCommitMessage) = checkoutscm();
     }
 
-//    stage('Build') {
+    stage('Build') {
 //      sh "mvn clean package install -T 1C"
-//    }
+      mvnbuild()
+    }
 
     stage('SonarQube') {
 //      withSonarQubeEnv() {
@@ -38,34 +39,31 @@ node {
     }
 
     stage('Package') {
-      sh "cd ${jenkinsRoot}; pwd; tar -czf ${WORKSPACE}.tar.gz ${JOB_NAME}"
+      //sh "cd ${jenkinsRoot}; pwd; tar -czf ${WORKSPACE}.tar.gz ${JOB_NAME}"
+      tarpack()
     }
 
     stage('Deploy') {
-      sshagent(['ecdsa']) {
-        sh 'scp ${WORKSPACE}.tar.gz viswar@sjsapp:/data/tmp'
-      }
+
+      deploy()
     }
 
     stage('Archive') {
-      sshagent(['ecdsa']) {
-        sh "ssh viswar@sjsapp bash /data/scripts/archive.sh ${JOB_NAME} ${appVer} --error"
-      }
+//      sshagent(['ecdsa']) {
+//        sh "ssh viswar@sjsapp bash /data/scripts/archive.sh ${JOB_NAME} ${appVer} --error"
+//      }
+      archive()
     }
 
     stage('Install') {
-      withCredentials([string(credentialsId: 'colordust', variable: 'colordust')]) {
-        sshagent(['ecdsa']) {
-          sh 'ssh viswar@sjsapp bash /data/scripts/install.sh ${JOB_NAME} ${colordust} --error'
-        }
-      }
+       install()
     }
 
     stage('Email') {
-      email.success( appVer, lastCommitMessage)
+      email.success()
     }
   } catch (Exception error) {
-    email.failed( appVer, lastCommitMessage)
+    email.failed()
   }
 
 }
