@@ -60,10 +60,10 @@ node {
     }
 
     stage('Email') {
-      email.success()
+      email.success( appVer, lastCommitMessage)
     }
   } catch (Exception error) {
-    email.failed()
+    email.failed( appVer, lastCommitMessage)
   }
 
 }
