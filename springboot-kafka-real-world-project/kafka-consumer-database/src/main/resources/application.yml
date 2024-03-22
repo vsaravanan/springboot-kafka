@@ -1,0 +1,45 @@
+server.port: 10630
+spring.kafka.bootstrap-servers: sjsdb:9092
+spring.kafka.consumer.boostrap-servers: sjsdb:9092
+spring.kafka.consumer.group-id: myGroup
+spring.kafka.consumer.auto-offset-reset: earliest
+spring.kafka.consumer.key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+spring.datasource.url: jdbc:mysql://saravanjs.com:3306/mysqldb
+spring.datasource.username: mysqluser
+spring.datasource.password: password
+
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto: update
+
+spring.jpa.properties.hibernate.show_sql: true
+spring.jpa.properties.hibernate.use_sql_comments: true
+spring.jpa.properties.hibernate.format_sql: true
+
+spring.kafka.topic.name: wikimedia_recentchange
+
+dirLog: /data/logs/springboot-kafka-real-world-project
+
+logging:
+  path: ${dirLog}
+  file.name: ${dirLog}/springboot-kafka-real-world-project.log
+  #  file.clean-history-on-start: true
+  pattern.rolling-file-name: ${dirLog}/%d{yyyyMMdd}/reactive.%d{yyyyMMdd}.%i.log.gz
+  pattern.console: "%M - %msg%n"
+  pattern.file: "%msg%n"
+  #  pattern.console: "%d{yyyy-MM-dd HH:mm:ss} | [%thread] | %-5level | %logger{36}.%M - %msg%n"
+  #  pattern.file: "%d{yyyy-MM-dd HH:mm:ss} | [%thread] | %-5level | %logger{36}.%M - %msg%n"
+  file.max-size: 100MB
+  #  file.total-size-cap: 2MB
+  file.max-history: 15
+  level:
+    #    web: TRACE
+    net.javaguides: debug
+    #    org.hibernate.SQL: debug
+    org.springframework.web: debug
+    org.springframework.web.servlet.resource: WARN
+    # org.springframework: trace
+    #org.hibernate.type: trace
+    root: info
+

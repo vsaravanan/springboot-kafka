@@ -1,0 +1,32 @@
+server.port: 10620
+spring.kafka.bootstrap-servers: sjsdb:9092
+spring.kafka.producer.bootstrap-servers: sjsdb:9092
+spring.kafka.producer.key-serializer: org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+spring.kafka.topic.name: wikimedia_recentchange
+
+
+
+dirLog: /data/logs/kafka-producer-wikimedia
+
+logging:
+  path: ${dirLog}
+  file.name: ${dirLog}/kafka-producer-wikimedia.log
+  #  file.clean-history-on-start: true
+  pattern.rolling-file-name: ${dirLog}/%d{yyyyMMdd}/reactive.%d{yyyyMMdd}.%i.log.gz
+  pattern.console: "%M - %msg%n"
+  pattern.file: "%msg%n"
+
+  file.max-size: 100MB
+  #  file.total-size-cap: 2MB
+  file.max-history: 15
+  level:
+    #    web: TRACE
+    net.javaguides: debug
+
+    org.springframework.web: debug
+    org.springframework.web.servlet.resource: WARN
+
+    root: info
+
