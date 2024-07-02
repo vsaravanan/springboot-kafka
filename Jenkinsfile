@@ -32,11 +32,24 @@ node {
       mvnbuild()
     }
 
+
     stage('SonarQube') {
-//      withSonarQubeEnv() {
-//        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=saravanjs-project -Dsonar.projectName='saravanjs-project'"
+//      try
+//      {
+//        def scannerHome = tool 'sonar-scanner';
+//        withSonarQubeEnv() {
+//          def sonarServerReachable = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://sjsdb:9000', returnStatus: true) == 200
+//          if (sonarServerReachable) {
+//            echo "SonarQube server is running."
+//            sh "${scannerHome}/bin/sonar-scanner"
+//            sonarqube()
+//          } else {
+//            echo 'SonarQube server is down. Continuing without analysis.'
+//          }
+//        }
+//      } catch (Exception e) {
+//        echo "SonarQube analysis failed: ${e.message}. Continuing the job."
 //      }
-//      sonarqube()
     }
 
     stage('Package') {
